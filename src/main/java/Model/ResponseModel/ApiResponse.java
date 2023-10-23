@@ -14,4 +14,5 @@ public class ApiResponse {
     public String job;
     public String id;
     public Date createdAt;
+    public Date updatedAt;
 }

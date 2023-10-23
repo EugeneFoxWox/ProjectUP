@@ -1,5 +1,6 @@
 import Model.RequestsModel.RequestModel;
 import Model.ResponseModel.*;
+import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import steps.Steps;
@@ -41,6 +42,12 @@ public class ReqressTests implements Steps {
         Assert.assertEquals(user, user1);
 
     }
+    @Test
+    public void userNotFound(){
+        Response response= API_STEPS.userNotFound(23);
+        Assert.assertEquals(response.statusCode(), 404);
+    }
+
     @Test(description = "")
     public void getResourcePage(){
         PagesResponse page = API_STEPS.getResourcePage();
@@ -53,6 +60,13 @@ public class ReqressTests implements Steps {
         System.out.println(page);
 
     }
+    @Test
+    public void notFoundPage(){
+        Response response= API_STEPS.notFoundPage(23);
+        Assert.assertEquals(response.statusCode(), 404);
+    }
+
+
 
 
     @Test
@@ -62,6 +76,27 @@ public class ReqressTests implements Steps {
         System.out.println(apiResponse);
 
     }
+
+    @Test
+    public void updateUser() {
+        ApiResponse apiResponse = API_STEPS.updateUser(new RequestModel("morphsus", "leader"));
+        System.out.println(apiResponse);
+
+    }
+    @Test
+    public void updateUserPatch() {
+        ApiResponse apiResponse = API_STEPS.updateUserPatch(new RequestModel("morphsus", "leader"));
+        System.out.println(apiResponse);
+
+    }
+    @Test
+    public void deleteUser() {
+        ApiResponse apiResponse = API_STEPS.deleteUser(new RequestModel());
+        System.out.println(apiResponse);
+
+    }
+
+
 
 
 
