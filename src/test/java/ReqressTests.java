@@ -67,8 +67,6 @@ public class ReqressTests implements Steps {
     }
 
 
-
-
     @Test
     public void createUser() {
         ApiResponse apiResponse = API_STEPS.createUser(new RequestModel("morpheus", "leader"));
@@ -79,20 +77,19 @@ public class ReqressTests implements Steps {
 
     @Test
     public void updateUser() {
-        ApiResponse apiResponse = API_STEPS.updateUser(new RequestModel("morphsus", "leader"));
+        ApiResponse apiResponse = API_STEPS.updateUser(new RequestModel("morphsus", "leader"), 2);
         System.out.println(apiResponse);
 
     }
     @Test
     public void updateUserPatch() {
-        ApiResponse apiResponse = API_STEPS.updateUserPatch(new RequestModel("morphsus", "leader"));
+        ApiResponse apiResponse = API_STEPS.updateUserPatch(new RequestModel("morphsus", "leader"), 2);
         System.out.println(apiResponse);
 
     }
     @Test
     public void deleteUser() {
-        ApiResponse apiResponse = API_STEPS.deleteUser(new RequestModel());
-        System.out.println(apiResponse);
+        API_STEPS.deleteUser(2);
 
     }
 

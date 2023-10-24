@@ -93,26 +93,26 @@ public class ApiSteps {
 
     }
     @Step("Обновить пользователя")
-    public ApiResponse updateUser(RequestModel request){
+    public ApiResponse updateUser(RequestModel request, Integer id){
         return given()
                 .baseUri("https://reqres.in")
                 .contentType(ContentType.JSON)
                 .body(request)
                 .when()
-                .put("/api/users/2")
+                .put("/api/users/"+ id)
                 .then()
                 .assertThat()
                 .statusCode(200).extract().response().body().as(ApiResponse.class);
 
     }
     @Step("Обновить пользователя")
-    public ApiResponse updateUserPatch(RequestModel request){
+    public ApiResponse updateUserPatch(RequestModel request, Integer id){
         return given()
                 .baseUri("https://reqres.in")
                 .contentType(ContentType.JSON)
                 .body(request)
                 .when()
-                .patch("/api/users/2")
+                .patch("/api/users/" + id)
                 .then()
                 .assertThat()
                 .statusCode(200).extract().response().body().as(ApiResponse.class);
@@ -120,16 +120,15 @@ public class ApiSteps {
     }
     //Не рабочее
     @Step("Удалить пользователя")
-    public ApiResponse deleteUser(RequestModel request){
-        return given()
+    public void deleteUser(Integer id){
+        given()
                 .baseUri("https://reqres.in")
                 .contentType(ContentType.JSON)
-                .body(request)
                 .when()
-                .delete("/api/users/2")
+                .delete("/api/users/"+ id)
                 .then()
                 .assertThat()
-                .statusCode(204).extract().response().body().as(ApiResponse.class);
+                .statusCode(204).extract().response();
 
     }
 }
