@@ -8,8 +8,13 @@ import lombok.RequiredArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class AuthSuccessfulRequestModel {
     public String email;
     public String password;
+
+    public AuthSuccessfulRequestModel(String email) {
+
+    }
 }
+

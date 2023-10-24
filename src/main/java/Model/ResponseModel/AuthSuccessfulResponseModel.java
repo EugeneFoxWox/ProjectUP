@@ -10,4 +10,8 @@ import lombok.NoArgsConstructor;
 public class AuthSuccessfulResponseModel {
     public Integer id;
     public String token;
+
+    public AuthSuccessfulResponseModel(String token) {
+
+    }
 }
