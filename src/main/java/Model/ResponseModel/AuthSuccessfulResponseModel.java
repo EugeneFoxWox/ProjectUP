@@ -12,6 +12,6 @@ public class AuthSuccessfulResponseModel {
     public String token;
 
     public AuthSuccessfulResponseModel(String token) {
-
+        this.token = token;
     }
 }

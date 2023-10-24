@@ -48,7 +48,7 @@ public class ApiSteps {
     }
 
 
-    @Step("Получить список пользователей по странице")
+    @Step("Получить список цветов по странице")
     public PagesResponse getResourcePage() {
         return given()
                 .baseUri("https://reqres.in")
@@ -60,7 +60,7 @@ public class ApiSteps {
 
     }
 
-    @Step("Получить")
+    @Step("Получить страницу")
     public PageResponse getPage(Integer page) {
         return given()
                 .baseUri("https://reqres.in")
@@ -72,7 +72,7 @@ public class ApiSteps {
 
     }
 
-    @Step("Получить....")
+    @Step("Получить страницу?")
     public Response notFoundPage(Integer page) {
         return given()
                 .baseUri("https://reqres.in")
@@ -154,16 +154,29 @@ public class ApiSteps {
     }
 
     @Step("Регистрация пользователя")
-    public PageResponse delayedResponse(AuthSuccessfulRequestModel request) {
+    public Response authUserUnsuccessful(AuthSuccessfulRequestModel request) {
         return given()
                 .baseUri("https://reqres.in")
                 .contentType(ContentType.JSON)
                 .body(request)
                 .when()
-                .post("/api/users?delay=3")
+                .post("/api/register/")
                 .then()
                 .assertThat()
-                .statusCode(200).extract().body().as(PageResponse.class);
+                .statusCode(400).extract().response();
+    }
+
+
+    @Step("Регистрация пользователя")
+    public DelayedResponse delayedResponse() {
+        return given()
+                .baseUri("https://reqres.in")
+                .contentType(ContentType.JSON)
+                .when()
+                .get("/api/users?delay=3")
+                .then()
+                .assertThat()
+                .statusCode(200).extract().body().as(DelayedResponse.class);
     }
 }
 
