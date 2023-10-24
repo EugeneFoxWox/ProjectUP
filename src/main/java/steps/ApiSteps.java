@@ -1,7 +1,8 @@
 package steps;
-import Model.RequestsModel.*;
-import Model.ResponseModel.*;
 
+import Model.RequestsModel.AuthSuccessfulRequestModel;
+import Model.RequestsModel.RequestModel;
+import Model.ResponseModel.*;
 import io.qameta.allure.Step;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -11,33 +12,35 @@ import static io.restassured.RestAssured.given;
 public class ApiSteps {
 
     @Step("Получить пользователя по id")
-    public UserResponse getUserById(Integer id){
+    public UserResponse getUserById(Integer id) {
         return given()
                 .baseUri("https://reqres.in")
                 .when()
-                .get("/api/users/"+id)
+                .get("/api/users/" + id)
                 .then()
                 .assertThat()
                 .statusCode(200).extract().response().body().as(UserResponse.class);
 
     }
+
     @Step("Получить пользователя по id")
-    public Response userNotFound(Integer id){
-         return given()
+    public Response userNotFound(Integer id) {
+        return given()
                 .baseUri("https://reqres.in")
                 .when()
-                .get("/api/users/"+id)
+                .get("/api/users/" + id)
                 .then()
                 .assertThat()
                 .statusCode(404).extract().response();
 
     }
+
     @Step("Получить список пользователей по странице")
-    public UsersOnPageResponse getUserList(Integer page){
+    public UsersOnPageResponse getUserList(Integer page) {
         return given()
                 .baseUri("https://reqres.in")
                 .when()
-                .get("/api/users?page="+page)
+                .get("/api/users?page=" + page)
                 .then()
                 .assertThat()
                 .statusCode(200).extract().response().body().as(UsersOnPageResponse.class);
@@ -46,7 +49,7 @@ public class ApiSteps {
 
 
     @Step("Получить список пользователей по странице")
-    public PagesResponse getResourcePage(){
+    public PagesResponse getResourcePage() {
         return given()
                 .baseUri("https://reqres.in")
                 .when()
@@ -56,23 +59,25 @@ public class ApiSteps {
                 .statusCode(200).extract().response().body().as(PagesResponse.class);
 
     }
+
     @Step("Получить")
-    public PageResponse getPage(Integer page){
+    public PageResponse getPage(Integer page) {
         return given()
                 .baseUri("https://reqres.in")
                 .when()
-                .get("/api/unknown/"+ page)
+                .get("/api/unknown/" + page)
                 .then()
                 .assertThat()
                 .statusCode(200).extract().response().body().as(PageResponse.class);
 
     }
+
     @Step("Получить....")
-    public Response notFoundPage(Integer page){
+    public Response notFoundPage(Integer page) {
         return given()
                 .baseUri("https://reqres.in")
                 .when()
-                .get("/api/unknown/"+ page)
+                .get("/api/unknown/" + page)
                 .then()
                 .assertThat()
                 .statusCode(404).extract().response();
@@ -80,7 +85,7 @@ public class ApiSteps {
     }
 
     @Step("Создать пользователя")
-    public ApiResponse createUser(RequestModel request){
+    public ApiResponse createUser(RequestModel request) {
         return given()
                 .baseUri("https://reqres.in")
                 .contentType(ContentType.JSON)
@@ -92,21 +97,23 @@ public class ApiSteps {
                 .statusCode(201).extract().response().body().as(ApiResponse.class);
 
     }
+
     @Step("Обновить пользователя")
-    public ApiResponse updateUser(RequestModel request, Integer id){
+    public ApiResponse updateUser(RequestModel request, Integer id) {
         return given()
                 .baseUri("https://reqres.in")
                 .contentType(ContentType.JSON)
                 .body(request)
                 .when()
-                .put("/api/users/"+ id)
+                .put("/api/users/" + id)
                 .then()
                 .assertThat()
                 .statusCode(200).extract().response().body().as(ApiResponse.class);
 
     }
+
     @Step("Обновить пользователя")
-    public ApiResponse updateUserPatch(RequestModel request, Integer id){
+    public ApiResponse updateUserPatch(RequestModel request, Integer id) {
         return given()
                 .baseUri("https://reqres.in")
                 .contentType(ContentType.JSON)
@@ -118,17 +125,46 @@ public class ApiSteps {
                 .statusCode(200).extract().response().body().as(ApiResponse.class);
 
     }
+
     //Не рабочее
     @Step("Удалить пользователя")
-    public void deleteUser(Integer id){
+    public void deleteUser(Integer id) {
         given()
                 .baseUri("https://reqres.in")
                 .contentType(ContentType.JSON)
                 .when()
-                .delete("/api/users/"+ id)
+                .delete("/api/users/" + id)
                 .then()
                 .assertThat()
                 .statusCode(204).extract().response();
 
     }
+
+    @Step("Регистрация пользователя")
+    public AuthSuccessfulResponseModel authUser(AuthSuccessfulRequestModel request) {
+        return given()
+                .baseUri("https://reqres.in")
+                .contentType(ContentType.JSON)
+                .body(request)
+                .when()
+                .post("/api/register/")
+                .then()
+                .assertThat()
+                .statusCode(200).extract().body().as(AuthSuccessfulResponseModel.class);
+    }
+
+    @Step("Регистрация пользователя")
+    public PageResponse delayedResponse(AuthSuccessfulRequestModel request) {
+        return given()
+                .baseUri("https://reqres.in")
+                .contentType(ContentType.JSON)
+                .body(request)
+                .when()
+                .post("/api/users?delay=3")
+                .then()
+                .assertThat()
+                .statusCode(200).extract().body().as(PageResponse.class);
+    }
 }
+
+

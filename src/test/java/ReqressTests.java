@@ -1,3 +1,4 @@
+import Model.RequestsModel.AuthSuccessfulRequestModel;
 import Model.RequestsModel.RequestModel;
 import Model.ResponseModel.*;
 import io.restassured.response.Response;
@@ -94,7 +95,33 @@ public class ReqressTests implements Steps {
     }
 //
 
+    @Test
+    public void registerSuccessful() {
+        AuthSuccessfulResponseModel response = API_STEPS.authUser(new AuthSuccessfulRequestModel("eve.holt@reqres.in", "pistol"));
+        AuthSuccessfulResponseModel expectedResponse = new AuthSuccessfulResponseModel(4, "QpwL5tke4Pnpja7X4");
+        Assert.assertEquals(response, expectedResponse);
+    }
+
+    @Test
+    public void registerUnsuccessful() {
+        AuthSuccessfulResponseModel response = API_STEPS.authUser(new AuthSuccessfulRequestModel("sydney@fife"));
+        AuthSuccessfulResponseModel expectedResponse = new AuthSuccessfulResponseModel(4, "QpwL5tke4Pnpja7X4");
+        Assert.assertNotEquals(response, expectedResponse);
+    }
 
 
+    @Test
+    public void loginSuccessful() {
+        AuthSuccessfulResponseModel response = API_STEPS.authUser(new AuthSuccessfulRequestModel("eve.holt@reqres.in", "cityslicka"));
+        AuthSuccessfulResponseModel expectedResponse = new AuthSuccessfulResponseModel("QpwL5tke4Pnpja7X4");
+        Assert.assertEquals(response, expectedResponse);
+    }
 
+
+    @Test
+    public void loginUnsuccessful() {
+        AuthSuccessfulResponseModel response = API_STEPS.authUser(new AuthSuccessfulRequestModel("peter@klaven"));
+        AuthSuccessfulResponseModel expectedResponse = new AuthSuccessfulResponseModel(4, "QpwL5tke4Pnpja7X4");
+        Assert.assertNotEquals(response, expectedResponse);
+    }
 }
