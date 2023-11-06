@@ -1,10 +1,12 @@
+package Hlam;
+
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-public class hlam {
+/*public class hlam {
     private Integer id;
 
     @BeforeTest
@@ -22,7 +24,7 @@ public class hlam {
         step1(1);
         step2("str");
     }*/
-
+/*
     @AfterTest
     public void End(){
         System.out.print("Тестирование завершено");
@@ -74,7 +76,7 @@ public class hlam {
     @Test(testName = "Шестой тест")
     public void testSix(){
         Assert.assertEquals(Discr.discr(2, 3, 1), 8);
-    }
+    }*/
 
     /*public void step1(int checkNum){
         Assert.assertEquals(1, checkNum);
@@ -84,5 +86,5 @@ public class hlam {
     @Test(testName = "Пятый тест")
     public void step2(String checkStr){
         Assert.assertEquals("str", checkStr);
-    }*/
-}
+    }
+}*/
