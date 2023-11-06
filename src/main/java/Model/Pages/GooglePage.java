@@ -1,4 +1,4 @@
-package UiTests.GoogleUITest;
+package Model.Pages;
 
 import org.openqa.selenium.By;
 

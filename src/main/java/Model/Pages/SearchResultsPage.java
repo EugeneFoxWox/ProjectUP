@@ -1,4 +1,4 @@
-package UiTests.GoogleUITest;
+package Model.Pages;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
