@@ -1,12 +1,12 @@
 package UiTests.NewUITests;
 
-import UiTests.GoogleUITest.SearchResultsPage;
+
+import Model.Pages.SearchResultsPage;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.open;
@@ -16,8 +16,8 @@ import static com.codeborne.selenide.Selenide.open;
 public class NewTest {
     @Test
     public void userCanLogin() {
-        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
-        System.setProperty("selenide.browser", "Edge");
+        //System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+        //System.setProperty("selenide.browser", "Chrome");
         open("https://www.avito.ru/kostroma/noutbuki");
         SearchResultsPage resultsPage = new SearchResultsPage();
         List<String> items = Creator.createStrings();
