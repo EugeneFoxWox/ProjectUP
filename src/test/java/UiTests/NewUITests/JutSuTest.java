@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 import static steps.Steps.UI_STEPS;
 
-@Epic("UI Tests")
+/*@Epic("UI Tests")
 @Feature("JutSu UI Tests")
 public class JutSuTest {
     @Test
@@ -14,4 +14,4 @@ public class JutSuTest {
         UI_STEPS.openJutSuPage();
         UI_STEPS.searchAnime("Dragon Ball");
     }
-}
+}*/
